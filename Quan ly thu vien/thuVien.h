@@ -65,6 +65,10 @@ bool kiemTraMaPhieuSachNgoaiVan(string maPhieu, phieuMuonTra_sachNgoaiVan* phieu
 	return phieu->get_maPhieu() == maPhieu;
 }
 
+bool isFileEmpty(fstream& f)
+{
+	return (f.peek() == fstream::traits_type::eof());
+}
 
 template<class T>
 class xuLiChung
@@ -132,14 +136,24 @@ private:
 	xuLiChung<DocGia> ds_docGia;
 	xuLiChung<phieuMuonTra_sachTiengViet> ds_phieuSachTiengViet;
 	xuLiChung<phieuMuonTra_sachNgoaiVan> ds_phieuSachNgoaiVan;
+	
 public:
 	
 	void themSach(SACH* x)
 	{
 		if (dynamic_cast<sachTiengViet*>(x))
+		{
 			ds_SachTiengViet.them(dynamic_cast<sachTiengViet*>(x));
+			File_themSachTiengViet("sachTiengViet", dynamic_cast<sachTiengViet*>(x));
+		}
+			
 		else
+		{
 			ds_SachNgoaiVan.them(dynamic_cast<sachNgoaiVan*>(x));
+			File_themSachNgoaiVan("sachNgoaiVan", dynamic_cast<sachNgoaiVan*>(x));
+		}
+		
+			
 	}
 
 	bool xoaSachTiengViet(string maSachCanXoa)
@@ -227,6 +241,7 @@ public:
 	void themDocGia(DocGia* x)
 	{
 		ds_docGia.them(x);
+		File_themDocGia("docGia", x);
 	}
 
 	bool xoaDocGia(string maDocGiaCanXoa)
@@ -281,9 +296,17 @@ public:
 	void themPhieu(phieuMuonTra* phieu)
 	{
 		if (dynamic_cast<phieuMuonTra_sachTiengViet*>(phieu))
+		{
 			ds_phieuSachTiengViet.them(dynamic_cast<phieuMuonTra_sachTiengViet*>(phieu));
+			File_themPhieu("phieuSachTiengViet", dynamic_cast<phieuMuonTra_sachTiengViet*>(phieu));
+		}
+			
 		else
+		{
 			ds_phieuSachNgoaiVan.them(dynamic_cast<phieuMuonTra_sachNgoaiVan*>(phieu));
+			File_themPhieu("phieuSachNgoaiVan", dynamic_cast<phieuMuonTra_sachNgoaiVan*>(phieu));
+		}
+			
 	}
 
 	bool xoaPhieuSachTiengViet(string maPhieu)
@@ -376,9 +399,96 @@ public:
 		}
 	}
 
+
+	void File_themSachTiengViet(string tenFile,sachTiengViet* x)
+	{
+		fstream fo(tenFile+".csv", ios::app);
+		if (fo.fail())
+		{
+			cout << "\nLoi khong mo duoc file";
+			return;
+		}
+		else
+		{
+			// neu file rong thi ghi may chu nay vao
+			/*if (isFileEmpty)
+			{
+				fo << "ma sach,ten sach,tac gia,NXB,gia sach" << endl;
+				isFileEmpty = false;
+			}	*/			
+				fo << x->get_maSach() << "," << x->get_tenSach() << "," << x->get_tacGia() << "," << x->get_nhaXuatBan() << "," << x->get_giaSach() << endl;
+			
+		}
+		fo.close();
+	}
+
+	void File_themSachNgoaiVan(string tenFile, sachNgoaiVan* x)
+	{
+		fstream fo(tenFile + ".csv", ios::app);
+		if (fo.fail())
+		{
+			cout << "\nLoi khong mo duoc file";
+			return;
+		}
+		else
+		{
+			// neu file rong thi ghi may chu nay vao
+			/*if (isFileEmpty)
+			{
+				fo << "ma sach,ten sach,tac gia,NXB,gia sach,ISBN"<< endl;
+			}	*/
+				fo << x->get_maSach() << "," << x->get_tenSach() << "," << x->get_tacGia() << "," << x->get_nhaXuatBan() << "," << x->get_giaSach() << ","<<x->get_ISBN()<<endl;		
+		}
+		fo.close();
+	}
+
+	void File_themDocGia(string tenFile, DocGia* x)
+	{
+		fstream fo(tenFile + ".csv", ios::app);
+		if (fo.fail())
+		{
+			cout << "\nLoi khong mo duoc file";
+			return;
+		}
+		else
+		{
+			// neu file rong thi ghi may chu nay vao
+			/*if (isFileEmpty)
+			{
+			fo << "ma sach,ten sach,tac gia,NXB,gia sach,ISBN"<< endl;
+			}	*/
+			fo << x->get_maDocGia() << "," << x->get_hoTen() << "," << x->get_CMND() << "," << x->get_ngaySinh2() << "," << x->get_ngayLapThe2() << endl;
+		}
+		fo.close();
+	}
+
+	void File_themPhieu(string tenFile, phieuMuonTra* x)
+	{
+		fstream fo(tenFile + ".csv", ios::app);
+		if (fo.fail())
+		{
+			cout << "\nLoi khong mo duoc file";
+			return;
+		}
+		else
+		{
+			// neu file rong thi ghi may chu nay vao
+			/*if (isFileEmpty)
+			{
+			fo << "ma sach,ten sach,tac gia,NXB,gia sach,ISBN"<< endl;
+			}	*/
+			fo << x->get_maPhieu() << "," << x->get_maDocGia() << "," << x->get_ngayMuon() << "," << x->get_ngayHetHan() << "," << x->get_sachMuon() << endl;
+		}
+		fo.close();
+	}
+
+	void update_File_sach(string maSach)
+	{
+
+	}
 };
 
-
+ 
 
 #endif __THUVIEN_H__
 

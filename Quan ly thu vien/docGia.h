@@ -28,12 +28,17 @@ public:
 	string get_maDocGia();
 	string get_hoTen();
 	string get_CMND();
-	void get_ngaySinh();
-	void get_ngayLapThe();
+	/*void get_ngaySinh();
+	void get_ngayLapThe();*/
 
 	
 	void nhap();
 	void xuat();
 	friend ostream& operator<<(ostream& outDev, DocGia* x);
+
+	string get_ngaySinh2();
+	
+	string get_ngayLapThe2();
+	
 };
 #endif

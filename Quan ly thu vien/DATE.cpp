@@ -121,11 +121,11 @@ void DATE::xuat()
 	cout << ngay << "/" << thang << "/" << nam;
 }
 
-//ostream& operator<<(ostream& outDev, const DATE& x)
-//{
-//	outDev <<"\n" <<x.ngay << "/" << x.thang << "/" << x.nam;
-//	return outDev;
-//}
+ostream& operator<<(ostream& outDev, const DATE& x)
+{
+	outDev <<"\n" <<x.ngay << "/" << x.thang << "/" << x.nam;
+	return outDev;
+}
 
 int offsetDays(int d, int m, int y)
 {

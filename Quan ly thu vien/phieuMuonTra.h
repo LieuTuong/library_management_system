@@ -32,6 +32,8 @@ public:
 	string get_maDocGia();
 	DATE tinhNgayHetHan(int han=7);
 	string get_sachMuon();
+	string get_ngayMuon();
+	string get_ngayHetHan();
 	
 	
 

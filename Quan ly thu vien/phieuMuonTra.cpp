@@ -41,6 +41,17 @@ string phieuMuonTra::get_sachMuon()
 	return maSach;
 }
 
+string phieuMuonTra::get_ngayMuon()
+{
+	return (to_string(ngayMuon.get_ngay()) + "/" + to_string(ngayMuon.get_thang()) + "/" + to_string(ngayMuon.get_nam()));
+}
+
+string phieuMuonTra::get_ngayHetHan()
+{
+	DATE x=tinhNgayHetHan();
+	return (to_string(x.get_ngay()) + "/" + to_string(x.get_thang()) + "/" + to_string(x.get_nam()));
+}
+
 void menuTinhTrang()
 {
 	cout << "\n\t1. Muon da tra.";

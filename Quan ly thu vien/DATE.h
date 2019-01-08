@@ -25,7 +25,7 @@ public:
 	
 	DATE tinhNgayHetHan(int);
 
-	//friend ostream& operator<<(ostream& outDev, const DATE& x);
+	friend ostream& operator<<(ostream& outDev, const DATE& x);
 };
 
 bool laNamNhuan(int nam);
