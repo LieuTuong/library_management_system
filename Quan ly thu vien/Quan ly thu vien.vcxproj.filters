@@ -24,9 +24,6 @@
     <ClCompile Include="docGia.cpp">
       <Filter>Resource Files</Filter>
     </ClCompile>
-    <ClCompile Include="thuVien.cpp">
-      <Filter>Resource Files</Filter>
-    </ClCompile>
     <ClCompile Include="phieuMuonTra.cpp">
       <Filter>Resource Files</Filter>
     </ClCompile>

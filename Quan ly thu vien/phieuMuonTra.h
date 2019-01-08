@@ -30,7 +30,7 @@ public:
 	
 	string get_maPhieu();
 	string get_maDocGia();
-	DATE tinhNgayHetHan(int );
+	DATE tinhNgayHetHan(int han=7);
 	string get_sachMuon();
 	
 	
@@ -51,14 +51,14 @@ class phieuMuonTra_sachTiengViet :public phieuMuonTra
 {
 public:
 	int tienPhatCuaLoaiSach();
-	friend ostream& operator<<(ostream& outDev, phieuMuonTra_sachTiengViet* phieu);
+	//friend ostream& operator<<(ostream& outDev, phieuMuonTra_sachTiengViet* phieu);
 };
 
 class phieuMuonTra_sachNgoaiVan :public phieuMuonTra
 {
 public:
 	int tienPhatCuaLoaiSach();
-	friend ostream& operator<<(ostream& outDev, phieuMuonTra_sachNgoaiVan* phieu);
+	//friend ostream& operator<<(ostream& outDev, phieuMuonTra_sachNgoaiVan* phieu);
 };
 
 

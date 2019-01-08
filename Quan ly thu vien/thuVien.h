@@ -35,8 +35,7 @@ namespace tt_phieu{
 		ma_phieu = 1,
 		ma_doc_gia,
 		ngay_muon,
-		ma_sach_muon,
-		tinh_trang
+		ma_sach_muon	
 	};
 
 }
@@ -343,22 +342,21 @@ public:
 			cin.ignore();
 			phieu->set_sachMuon();
 		}
-		else if (lc == tt_phieu::tinh_trang)
-		{
-			cout << "\nTinh trang: ";
-			phieu->set_tinhTrang();
-		}
+		
 	}
 
 	
 
 	void Xuat_dsMuonSachTiengVietTreHan(DATE now)
 	{
+		int treHan;
 		for (size_t i = 0; i < ds_phieuSachTiengViet.size(); i++)
 		{
-			if (khoangCachNgay(ds_phieuSachTiengViet.at(i)->tinhNgayHetHan(), now) > 0)
+			 treHan = khoangCachNgay(ds_phieuSachTiengViet.at(i)->tinhNgayHetHan(), now);
+			if (treHan > 0)
 			{
 				ds_phieuSachTiengViet.at(i)->xuat();
+				cout << "\nTre han " << treHan << " ngay";
 				cout << "\n\nTien phat tre han phai dong: " << ds_phieuSachTiengViet.at(i)->tinhTienPhat(now);
 			}
 		}
@@ -368,10 +366,12 @@ public:
 	{
 		for (size_t i = 0; i < ds_phieuSachNgoaiVan.size(); i++)
 		{
-			if (khoangCachNgay(ds_phieuSachNgoaiVan.at(i)->tinhNgayHetHan(), now) > 0)
+			 int treHan = khoangCachNgay(ds_phieuSachNgoaiVan.at(i)->tinhNgayHetHan(), now);
+			if (treHan > 0)
 			{
 				ds_phieuSachNgoaiVan.at(i)->xuat();
-				cout << "\n\nTien phat tre han phai dong: " << ds_phieuSachNgoaiVan.at(i)->tinhTienPhat(now);
+				cout << "\nTre han " << treHan << " ngay";
+				cout << "\nTien phat tre han phai dong: " << ds_phieuSachNgoaiVan.at(i)->tinhTienPhat(now);
 			}
 		}
 	}

@@ -119,12 +119,17 @@ ostream& operator<<(ostream& outDev, SACH* x)
 	return outDev;
 }
 
-ostream& operator<<(ostream& outDev,  sachTiengViet* x)
-{
-	return operator<<(outDev, x);
-}
+//ostream& operator<<(ostream& outDev,  sachTiengViet* x)
+//{
+//	outDev << "\nMa sach: " << x->get_maSach();
+//	outDev << "\nTen sach: " << x->get_tenSach();
+//	outDev << "\nTac gia: " << x->get_tacGia();
+//	outDev << "\nNha xuat ban: " << x->get_nhaXuatBan();
+//	outDev << "\nGia sach: " << x->get_giaSach();
+//	return outDev;
+//}
 
-ostream& operator<<(ostream& outDev, sachNgoaiVan* x)
+ostream& operator<<(ostream& outDev,  sachNgoaiVan* x)
 {
 	outDev << "\nMa sach: " << x->get_maSach();
 	outDev << "\nTen sach: " << x->get_tenSach();

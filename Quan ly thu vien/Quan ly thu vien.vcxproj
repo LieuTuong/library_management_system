@@ -83,7 +83,6 @@
     <ClCompile Include="main.cpp" />
     <ClCompile Include="phieuMuonTra.cpp" />
     <ClCompile Include="Sach.cpp" />
-    <ClCompile Include="thuVien.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="DATE.h" />

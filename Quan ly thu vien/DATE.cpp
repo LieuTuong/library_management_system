@@ -5,6 +5,13 @@ DATE::DATE()
 	ngay = thang = nam = 0;
 }
 
+DATE::DATE(int ngay, int thang, int nam)
+{
+	this->ngay = ngay;
+	this->thang = thang;
+	this->nam = nam;
+}
+
 void DATE::set_ngay()
 {
 	do{
@@ -59,7 +66,7 @@ bool laNamNhuan(int nam)
 
 int tinhSoNgayTrongThang(int thang,int nam)
 {
-	int soNgay;
+	int soNgay=0;
 	switch (thang)
 	{
 	case 1:
@@ -111,14 +118,14 @@ void DATE::nhap()
 
 void DATE::xuat()
 {
-	cout << ngay << "/" << thang << "/" << nam << "/" << endl;
+	cout << ngay << "/" << thang << "/" << nam;
 }
 
-ostream& operator<<(ostream& outDev, const DATE& x)
-{
-	outDev <<"\n" <<x.ngay << "/" << x.thang << "/" << x.nam;
-	return outDev;
-}
+//ostream& operator<<(ostream& outDev, const DATE& x)
+//{
+//	outDev <<"\n" <<x.ngay << "/" << x.thang << "/" << x.nam;
+//	return outDev;
+//}
 
 int offsetDays(int d, int m, int y)
 {
@@ -155,7 +162,7 @@ int offsetDays(int d, int m, int y)
 	return offset;
 }
 
-void revoffsetDays(int offset, int y, int d, int m)
+void revoffsetDays(int offset, int y, int *d, int *m)
 {
 	int i;
 	for (i = 1; i <= 12; i++)
@@ -164,39 +171,40 @@ void revoffsetDays(int offset, int y, int d, int m)
 			break;
 		offset = offset - tinhSoNgayTrongThang(i, y);
 	}
-	d = offset;
-	m = i;
+	*d = offset;
+	*m = i;
 }
 
 DATE DATE::tinhNgayHetHan(int hanNgay)
 {
-	int offset1 = offsetDays(ngay, thang, nam);
-	int remDays = laNamNhuan(nam) ? (366 - offset1) : (365 - offset1);
+	DATE ngayHetHan(*this);
+	int offset1 = offsetDays(ngayHetHan.ngay, ngayHetHan.thang, ngayHetHan.nam);
+	int remDays = laNamNhuan(ngayHetHan.nam) ? (366 - offset1) : (365 - offset1);
 
-	int offset2=0;
+	int offset2 = 0;
 	if (hanNgay <= remDays)
 	{
-		this->nam= nam;
+		ngayHetHan.nam = nam;
 		offset2 += hanNgay;
 	}
 	else
 	{
 		hanNgay -= remDays;
-		this->nam = nam + 1;
-		int SoNgayCuaNamHetHan = laNamNhuan(this->nam) ? 366 : 365;
+		ngayHetHan.nam = nam + 1;
+		int SoNgayCuaNamHetHan = laNamNhuan(ngayHetHan.nam) ? 366 : 365;
 		while (hanNgay >= SoNgayCuaNamHetHan)
 		{
 			hanNgay -= SoNgayCuaNamHetHan;
-			this->nam++;
-			SoNgayCuaNamHetHan = laNamNhuan(this->nam) ? 366 : 365;
+			ngayHetHan.nam++;
+			SoNgayCuaNamHetHan = laNamNhuan(ngayHetHan.nam) ? 366 : 365;
 		}
 
 		offset2 = hanNgay;
 	}
 
-	
-	revoffsetDays(offset2, this->nam, this->ngay, this->thang);
-	return *this;
+
+	revoffsetDays(offset2, ngayHetHan.nam, &ngayHetHan.ngay, &ngayHetHan.thang);
+	return ngayHetHan;
 }
 
 int demNamNhuan(DATE d)

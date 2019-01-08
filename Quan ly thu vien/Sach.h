@@ -40,7 +40,7 @@ public:
 	virtual void nhap();
 	virtual void xuat();
 
-	friend ostream& operator<<(ostream& outDev,  SACH* sach);
+	friend ostream& operator<<(ostream& outDev, SACH* sach);
 };
 
 
@@ -50,7 +50,7 @@ public:
 	sachTiengViet();
 	//sachTiengViet(string _maSach, string _tenSach, string _tacGia, string _NXB, string _giaSach) :SACH(_maSach, _tenSach, _tacGia, _NXB, _giaSach){}
 	~sachTiengViet(){}
-	friend ostream& operator<<(ostream& outDev,  sachTiengViet* sach);
+	//friend ostream& operator<<(ostream& outDev,  sachTiengViet* sach);
 };
 
 
@@ -67,7 +67,7 @@ public:
 
 	void nhap();
 	void xuat();
-	friend ostream& operator<<(ostream& outDev,  sachNgoaiVan* sach);
+	friend ostream& operator<<(ostream& outDev, sachNgoaiVan* sach);
 };
 
 

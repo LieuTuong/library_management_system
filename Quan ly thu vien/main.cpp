@@ -39,7 +39,7 @@ void menu()
 	cout << "\n13. Sua phieu muon";
 	cout << "\n14. Tim kiem phieu muon";
 	cout << "\n15. Xuat tat ca danh sach phieu muon";
-	cout << "\n11. Danh sach doc gia muon sach qua gioi han";
+	cout << "\n16. Danh sach doc gia muon sach qua gioi han";
 	cout << "\n-----------------------------------------------";
 }
 
@@ -437,6 +437,7 @@ int main()
 		{
 			while (1)
 			{
+				system("cls");
 				menuPhieu();
 				cout << "\nChon loai phieu: "; cin >> loai;
 				if (loai == 0)break;

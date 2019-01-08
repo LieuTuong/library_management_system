@@ -21,10 +21,6 @@ void phieuMuonTra::set_ngayMuon()
 	ngayMuon.nhap();
 }
 
-
-
-
-
 string phieuMuonTra::get_maDocGia()
 {
 	return maDocGia;
@@ -34,10 +30,6 @@ string phieuMuonTra::get_maPhieu()
 {
 	return maPhieu;
 }
-
-
-
-
 
 void phieuMuonTra::set_sachMuon()
 {
@@ -72,7 +64,7 @@ void phieuMuonTra::nhap()
 		
 }
 
-DATE phieuMuonTra::tinhNgayHetHan(int hanNgay=7)
+DATE phieuMuonTra::tinhNgayHetHan(int hanNgay)
 {
 	return ngayMuon.tinhNgayHetHan(hanNgay);
 }
@@ -83,7 +75,7 @@ void phieuMuonTra::xuat()
 	cout << "\nMa doc gia: " << get_maDocGia();
 	cout << "\nNgay muon: "; ngayMuon.xuat();
 	cout << "\nSach muon: " << get_sachMuon();
-	cout << "\nNgay tra sach: "; tinhNgayHetHan().xuat();
+	cout << "\nHan tra sach: "; tinhNgayHetHan().xuat();
 	
 }
 
@@ -104,6 +96,7 @@ int phieuMuonTra_sachTiengViet::tienPhatCuaLoaiSach()
 
 ostream& operator<<(ostream& outDev, phieuMuonTra* phieu)
 {
+	outDev << "\nMa phieu: " << phieu->get_maPhieu();
 	outDev << "\nMa doc gia: " << phieu->get_maDocGia();
 	outDev << "\nNgay muon: "; phieu->ngayMuon.xuat();
 	outDev << "\nNgay tra sach: "; phieu->tinhNgayHetHan().xuat();
@@ -113,22 +106,23 @@ ostream& operator<<(ostream& outDev, phieuMuonTra* phieu)
 }
 
 
-ostream& operator<<(ostream& outDev, phieuMuonTra_sachTiengViet* phieu)
-{
-	outDev << "\nMa doc gia: " << phieu->get_maDocGia();
-	outDev << "\nNgay muon: "; phieu->ngayMuon.xuat();
-	outDev << "\nNgay tra sach: "; phieu->tinhNgayHetHan().xuat();
-	outDev << "\nSach dang muon: " << phieu->get_sachMuon();
-
-	return outDev;
-}
-
-ostream& operator<<(ostream& outDev, phieuMuonTra_sachNgoaiVan* phieu)
-{
-	outDev << "\nMa doc gia: " << phieu->get_maDocGia();
-	outDev << "\nNgay muon: "; phieu->ngayMuon.xuat();
-	outDev << "\nNgay tra sach: "; phieu->tinhNgayHetHan().xuat();
-	outDev << "\nSach dang muon: " << phieu->get_sachMuon();
-
-	return outDev;
-}
+//ostream& operator<<(ostream& outDev, phieuMuonTra_sachTiengViet* phieu)
+//{
+//	outDev << "\nMa phieu: " << phieu->get_maPhieu();
+//	outDev << "\nMa doc gia: " << phieu->get_maDocGia();
+//	outDev << "\nNgay muon: "; phieu->ngayMuon.xuat();
+//	outDev << "\nNgay tra sach: "; phieu->tinhNgayHetHan().xuat();
+//	outDev << "\nSach dang muon: " << phieu->get_sachMuon();
+//
+//	return outDev;
+//}
+//
+//ostream& operator<<(ostream& outDev, phieuMuonTra_sachNgoaiVan* phieu)
+//{
+//	outDev << "\nMa doc gia: " << phieu->get_maDocGia();
+//	outDev << "\nNgay muon: "; phieu->ngayMuon.xuat();
+//	outDev << "\nNgay tra sach: "; phieu->tinhNgayHetHan().xuat();
+//	outDev << "\nSach dang muon: " << phieu->get_sachMuon();
+//
+//	return outDev;
+//}

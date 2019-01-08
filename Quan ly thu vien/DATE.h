@@ -10,6 +10,7 @@ protected:
 	int nam;
 public:
 	DATE();
+	DATE(int, int, int);
 	void set_ngay();
 	void set_thang();
 	void set_nam();
@@ -22,9 +23,9 @@ public:
 	void xuat();
 	
 	
-	DATE tinhNgayHetHan(int hanNgay);
+	DATE tinhNgayHetHan(int);
 
-	friend ostream& operator<<(ostream& outDev, const DATE& x);
+	//friend ostream& operator<<(ostream& outDev, const DATE& x);
 };
 
 bool laNamNhuan(int nam);
@@ -36,7 +37,7 @@ bool laNgayHopLe(int ngay, int thang,int nam);
 int offsetDays(int d, int m, int y);
 
 
-void revoffsetDays(int offset, int y, int d, int m);
+void revoffsetDays(int offset, int y, int *d, int *m);
 
 int demNamNhuan(DATE d);
 
