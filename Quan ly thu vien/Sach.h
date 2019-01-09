@@ -35,10 +35,10 @@ public:
 	string get_nhaXuatBan();
 	string get_giaSach();
 
-	//SACH(string _maSach, string _tenSach, string _tacGia, string _NXB, string _giaSach) :maSach(_maSach), tenSach(_tenSach), tacGia(_tacGia), nhaXuatBan(_NXB), giaSach(_giaSach){}
+	
 	virtual ~SACH(){};
 	virtual void nhap();
-	virtual void xuat();
+
 
 	friend ostream& operator<<(ostream& outDev, SACH* sach);
 };
@@ -48,9 +48,9 @@ class sachTiengViet :public SACH
 {
 public:
 	sachTiengViet();
-	//sachTiengViet(string _maSach, string _tenSach, string _tacGia, string _NXB, string _giaSach) :SACH(_maSach, _tenSach, _tacGia, _NXB, _giaSach){}
+	
 	~sachTiengViet(){}
-	//friend ostream& operator<<(ostream& outDev,  sachTiengViet* sach);
+	
 };
 
 
@@ -60,13 +60,13 @@ private:
 	string ISBN;
 public:
 	sachNgoaiVan();
-	//sachNgoaiVan(string _maSach, string _tenSach, string _tacGia, string _NXB, string _giaSach, string _ISBN) :SACH(_maSach, _tenSach, _tacGia, _NXB, _giaSach), ISBN(_ISBN){}
+	
 	~sachNgoaiVan(){};
 	void set_ISBN();
 	string get_ISBN();
 
 	void nhap();
-	void xuat();
+	
 	friend ostream& operator<<(ostream& outDev, sachNgoaiVan* sach);
 };
 

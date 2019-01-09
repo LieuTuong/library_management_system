@@ -64,14 +64,6 @@ void SACH::nhap()
 	cout << "\nGia sach: "; set_giaSach();
 }
 
-void SACH::xuat()
-{
-	cout << "\nMa sach: "<< get_maSach();
-	cout << "\nTen sach: "<< get_tenSach();
-	cout << "\nTac gia: "<< get_tacGia();
-	cout << "\nNha xuat ban: "<<get_nhaXuatBan();
-	cout << "\nGia sach: "<< get_giaSach();
-}
 
 sachTiengViet::sachTiengViet()
 {
@@ -95,13 +87,6 @@ void sachNgoaiVan::nhap()
 	cout << "\nISBN: "; set_ISBN();
 }
 
-void sachNgoaiVan::xuat()
-{
-	SACH::xuat();
-	cout << "\nISBN: " << get_ISBN();
-}
-
-
 
 sachNgoaiVan::sachNgoaiVan()
 {
@@ -119,15 +104,7 @@ ostream& operator<<(ostream& outDev, SACH* x)
 	return outDev;
 }
 
-//ostream& operator<<(ostream& outDev,  sachTiengViet* x)
-//{
-//	outDev << "\nMa sach: " << x->get_maSach();
-//	outDev << "\nTen sach: " << x->get_tenSach();
-//	outDev << "\nTac gia: " << x->get_tacGia();
-//	outDev << "\nNha xuat ban: " << x->get_nhaXuatBan();
-//	outDev << "\nGia sach: " << x->get_giaSach();
-//	return outDev;
-//}
+
 
 ostream& operator<<(ostream& outDev,  sachNgoaiVan* x)
 {

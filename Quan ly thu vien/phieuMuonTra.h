@@ -8,7 +8,6 @@ enum loaiPhieu
 	phieu_sach_tieng_viet = 1,
 	phieu_sach_ngoai_van
 };
-void menuTinhTrang();
 
 class phieuMuonTra
 {
@@ -38,8 +37,7 @@ public:
 	
 
 	void nhap();
-	void xuat();
-
+	
 	 int tinhTienPhat(DATE);
 	 virtual int tienPhatCuaLoaiSach()
 	 {
@@ -53,14 +51,14 @@ class phieuMuonTra_sachTiengViet :public phieuMuonTra
 {
 public:
 	int tienPhatCuaLoaiSach();
-	//friend ostream& operator<<(ostream& outDev, phieuMuonTra_sachTiengViet* phieu);
+	
 };
 
 class phieuMuonTra_sachNgoaiVan :public phieuMuonTra
 {
 public:
 	int tienPhatCuaLoaiSach();
-	//friend ostream& operator<<(ostream& outDev, phieuMuonTra_sachNgoaiVan* phieu);
+	
 };
 
 

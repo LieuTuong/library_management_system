@@ -17,7 +17,7 @@ private:
 	DATE ngayLapThe;
 
 public:
-	//DocGia(string _maDocGia, string _hoTen, string _CMND, DATE _ngaySinh,string _ngayLapThe) :maDocGia(_maDocGia), hoTen(_hoTen), CMND(_CMND), ngaySinh(_ngaySinh),ngayLapThe(_ngayLapThe){}
+	
 	DocGia();
 	void set_maDocGia();
 	void set_hoTen();
@@ -28,17 +28,14 @@ public:
 	string get_maDocGia();
 	string get_hoTen();
 	string get_CMND();
-	/*void get_ngaySinh();
-	void get_ngayLapThe();*/
-
 	
 	void nhap();
-	void xuat();
+	
 	friend ostream& operator<<(ostream& outDev, DocGia* x);
 
-	string get_ngaySinh2();
+	string get_ngaySinh();
 	
-	string get_ngayLapThe2();
+	string get_ngayLapThe();
 	
 };
 #endif

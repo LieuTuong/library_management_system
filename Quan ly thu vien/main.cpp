@@ -61,7 +61,7 @@ void menuSuaThongTinDocGia()
 {
 	cout << "\n0. Thoat";
 	cout << "\n1. Sua ma doc gia";
-	cout << "\n2. Sau ho ten";
+	cout << "\n2. Sua ho ten";
 	cout << "\n3. Sua CMND";
 	cout << "\n4. Sua ngay sinh";
 	cout << "\n5. Sua ngay lap the";
@@ -90,12 +90,15 @@ void menuSuaThongTinPhieu()
 	cout << "\n5. Sua tinh trang";
 }
 
+
+
 int main()
 {
 	thuVien tv;
 	bool thanhCong;
 	string maCanTra;
 	int loai;
+	
 	while (1)
 	{	
 		system("cls");
@@ -205,6 +208,7 @@ int main()
 					system("pause");
 				}
 			}
+			
 		}
 
 		else if (lc == tim_kiem_sach)
@@ -228,7 +232,7 @@ int main()
 					else if (loai == sach_ngoai_van)
 						sach = tv.timSachNgoaiVan(maCanTra);		
 					if (sach)
-						sach->xuat();
+						cout << sach;
 					else cout << "\nKhong tim thay sach trong thu vien.";
 					system("pause");
 				}
@@ -411,13 +415,14 @@ int main()
 				else
 				{
 					cout << "\n\nNhap ma phieu can tim: ";
+					cin.ignore();
 					getline(cin, maCanTra);
 					if (loai == phieu_sach_tieng_viet)
 						find = tv.timPhieuSachTiengViet(maCanTra);
 					else if (loai == phieu_sach_ngoai_van)
 						find = tv.timPhieuSachNgoaiVan(maCanTra);
 
-					if (thanhCong)
+					if (find)
 						cout << find;
 					else
 						cout << "\nKhong tim thay phieu.";
@@ -429,8 +434,13 @@ int main()
 		else if (lc == xuat_ds_phieu_muon)
 		{
 			system("cls");
-			tv.Xuat_dsPhieuSachNgoaiVan();
+
+			cout << "\n------- Phieu muon sach tieng viet -------------";
 			tv.Xuat_dsPhieuSachTiengViet();
+
+			cout << "\n------- Phieu muon sach ngoai van -------------";
+			tv.Xuat_dsPhieuSachNgoaiVan();
+
 			system("pause");
 		}
 		else if (lc == xuat_ds_muon_sach_tre_han)

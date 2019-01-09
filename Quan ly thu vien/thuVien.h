@@ -65,10 +65,7 @@ bool kiemTraMaPhieuSachNgoaiVan(string maPhieu, phieuMuonTra_sachNgoaiVan* phieu
 	return phieu->get_maPhieu() == maPhieu;
 }
 
-bool isFileEmpty(fstream& f)
-{
-	return (f.peek() == fstream::traits_type::eof());
-}
+
 
 template<class T>
 class xuLiChung
@@ -158,7 +155,10 @@ public:
 
 	bool xoaSachTiengViet(string maSachCanXoa)
 	{
-		return ds_SachTiengViet.xoa(maSachCanXoa,kiemTraMaSachTiengViet);
+
+		bool thanhCong= ds_SachTiengViet.xoa(maSachCanXoa,kiemTraMaSachTiengViet);
+		Delete_File_sachTiengViet(maSachCanXoa);
+		return thanhCong;
 	}
 
 	bool xoaSachNgoaiVan(string maSachCanXoa)
@@ -236,6 +236,7 @@ public:
 			cin.ignore();
 			dynamic_cast<sachNgoaiVan*>(x)->set_ISBN();
 		}
+
 	}
 
 	void themDocGia(DocGia* x)
@@ -246,7 +247,9 @@ public:
 
 	bool xoaDocGia(string maDocGiaCanXoa)
 	{
-		return ds_docGia.xoa(maDocGiaCanXoa, kiemTraMaDocGia);
+		bool thanhCong= ds_docGia.xoa(maDocGiaCanXoa, kiemTraMaDocGia);
+		Delete_File_DocGia(maDocGiaCanXoa);
+		return thanhCong;
 	}
 
 	void Xuat_dsDocGia()
@@ -311,12 +314,16 @@ public:
 
 	bool xoaPhieuSachTiengViet(string maPhieu)
 	{
-		return ds_phieuSachTiengViet.xoa(maPhieu, kiemTraMaPhieuSachTiengViet);
+		bool thanhCong= ds_phieuSachTiengViet.xoa(maPhieu, kiemTraMaPhieuSachTiengViet);
+		Delete_File_PhieuSachTiengViet(maPhieu);
+		return thanhCong;
 	}
 
 	bool xoaPhieuSachNGoaiVan(string maPhieu)
 	{
-		return ds_phieuSachNgoaiVan.xoa(maPhieu, kiemTraMaPhieuSachNgoaiVan);
+		bool thanhCong= ds_phieuSachNgoaiVan.xoa(maPhieu, kiemTraMaPhieuSachNgoaiVan);
+		Delete_File_PhieuSachNgoaiVan(maPhieu);
+		return thanhCong;
 	}
 
 	phieuMuonTra_sachTiengViet* timPhieuSachTiengViet(string maPhieu)
@@ -368,8 +375,6 @@ public:
 		
 	}
 
-	
-
 	void Xuat_dsMuonSachTiengVietTreHan(DATE now)
 	{
 		int treHan;
@@ -378,7 +383,7 @@ public:
 			 treHan = khoangCachNgay(ds_phieuSachTiengViet.at(i)->tinhNgayHetHan(), now);
 			if (treHan > 0)
 			{
-				ds_phieuSachTiengViet.at(i)->xuat();
+				cout << ds_phieuSachTiengViet.at(i);
 				cout << "\nTre han " << treHan << " ngay";
 				cout << "\n\nTien phat tre han phai dong: " << ds_phieuSachTiengViet.at(i)->tinhTienPhat(now);
 			}
@@ -392,7 +397,7 @@ public:
 			 int treHan = khoangCachNgay(ds_phieuSachNgoaiVan.at(i)->tinhNgayHetHan(), now);
 			if (treHan > 0)
 			{
-				ds_phieuSachNgoaiVan.at(i)->xuat();
+				cout << ds_phieuSachNgoaiVan.at(i);
 				cout << "\nTre han " << treHan << " ngay";
 				cout << "\nTien phat tre han phai dong: " << ds_phieuSachNgoaiVan.at(i)->tinhTienPhat(now);
 			}
@@ -409,15 +414,8 @@ public:
 			return;
 		}
 		else
-		{
-			// neu file rong thi ghi may chu nay vao
-			/*if (isFileEmpty)
-			{
-				fo << "ma sach,ten sach,tac gia,NXB,gia sach" << endl;
-				isFileEmpty = false;
-			}	*/			
-				fo << x->get_maSach() << "," << x->get_tenSach() << "," << x->get_tacGia() << "," << x->get_nhaXuatBan() << "," << x->get_giaSach() << endl;
-			
+		{		
+			fo << x->get_maSach() << "," << x->get_tenSach() << "," << x->get_tacGia() << "," << x->get_nhaXuatBan() << "," << x->get_giaSach() << endl;			
 		}
 		fo.close();
 	}
@@ -432,12 +430,8 @@ public:
 		}
 		else
 		{
-			// neu file rong thi ghi may chu nay vao
-			/*if (isFileEmpty)
-			{
-				fo << "ma sach,ten sach,tac gia,NXB,gia sach,ISBN"<< endl;
-			}	*/
-				fo << x->get_maSach() << "," << x->get_tenSach() << "," << x->get_tacGia() << "," << x->get_nhaXuatBan() << "," << x->get_giaSach() << ","<<x->get_ISBN()<<endl;		
+		
+			fo << x->get_maSach() << "," << x->get_tenSach() << "," << x->get_tacGia() << "," << x->get_nhaXuatBan() << "," << x->get_giaSach() << ","<<x->get_ISBN()<<endl;		
 		}
 		fo.close();
 	}
@@ -452,12 +446,8 @@ public:
 		}
 		else
 		{
-			// neu file rong thi ghi may chu nay vao
-			/*if (isFileEmpty)
-			{
-			fo << "ma sach,ten sach,tac gia,NXB,gia sach,ISBN"<< endl;
-			}	*/
-			fo << x->get_maDocGia() << "," << x->get_hoTen() << "," << x->get_CMND() << "," << x->get_ngaySinh2() << "," << x->get_ngayLapThe2() << endl;
+
+			fo << x->get_maDocGia() << "," << x->get_hoTen() << "," << x->get_CMND() << "," << x->get_ngaySinh() << "," << x->get_ngayLapThe() << endl;
 		}
 		fo.close();
 	}
@@ -472,20 +462,171 @@ public:
 		}
 		else
 		{
-			// neu file rong thi ghi may chu nay vao
-			/*if (isFileEmpty)
-			{
-			fo << "ma sach,ten sach,tac gia,NXB,gia sach,ISBN"<< endl;
-			}	*/
 			fo << x->get_maPhieu() << "," << x->get_maDocGia() << "," << x->get_ngayMuon() << "," << x->get_ngayHetHan() << "," << x->get_sachMuon() << endl;
 		}
 		fo.close();
 	}
 
-	void update_File_sach(string maSach)
+	void Delete_File_sachTiengViet(string maSachXoa)
 	{
-
+		fstream fo("sachTiengViet.csv", ios::in);
+		fstream tmp("tmp.csv", ios::out);
+		if (!fo.is_open() || !tmp.is_open())
+		{
+			cout << "\nLoi khong mo duoc file";
+			return;
+		}
+		string _maSach, _tenSach, _tacGia, _NXB, _giaSach;
+		while (getline(fo, _maSach, ','))
+		{
+			getline(fo, _tenSach, ',');
+			getline(fo, _tacGia, ',');
+			getline(fo, _NXB, ',');
+			getline(fo, _giaSach, '\n');
+			if (_maSach.compare(maSachXoa) == 0)
+			{
+				continue;
+			}
+			else
+			{				
+				tmp << _maSach << "," << _tenSach << "," << _tacGia << "," << _NXB << "," << _giaSach << endl;
+			}
+		}
+		tmp.close();
+		fo.close();
+		remove("sachTiengViet.csv");
+		rename("tmp.csv", "sachTiengViet.csv");
 	}
+
+	void Delete_File_sachNgoaiVan(string maSachXoa)
+	{
+		fstream fo("sachNgoaiVan.csv", ios::in);
+		fstream tmp("tmp.csv", ios::out);
+		if (!fo.is_open() || !tmp.is_open())
+		{
+			cout << "\nLoi khong mo duoc file";
+			return;
+		}
+		string _maSach, _tenSach, _tacGia, _NXB, _giaSach, _ISBN;
+		while (getline(fo, _maSach, ','))
+		{
+			getline(fo, _tenSach, ',');
+			getline(fo, _tacGia, ',');
+			getline(fo, _NXB, ',');
+			getline(fo, _giaSach, ',');
+			getline(fo, _ISBN, '\n');
+			if (_maSach.compare(maSachXoa) == 0)
+			{
+				continue;
+			}
+			else
+			{
+				tmp << _maSach << "," << _tenSach << "," << _tacGia << "," << _NXB << "," << _giaSach<<"," <<_ISBN<< endl;
+			}
+		}
+		tmp.close();
+		fo.close();
+		remove("sachNgoaiVan.csv");
+		rename("tmp.csv", "sachNgoaiVan.csv");
+	}
+
+	void Delete_File_DocGia(string maDocGia)
+	{
+		fstream fo("sachNgoaiVan.csv", ios::in);
+		fstream tmp("tmp.csv", ios::out);
+		if (!fo.is_open() || !tmp.is_open())
+		{
+			cout << "\nLoi khong mo duoc file";
+			return;
+		}
+		string _maDocGia, _ten, _CMND, _ngaySinh, _ngayLapThe;
+		while (getline(fo, _maDocGia, ','))
+		{
+			getline(fo, _ten, ',');
+			getline(fo, _CMND, ',');
+			getline(fo, _ngaySinh, ',');
+			getline(fo, _ngayLapThe, '\n');
+			
+			if (_maDocGia.compare(maDocGia) == 0)
+			{
+				continue;
+			}
+			else
+			{
+				tmp << _maDocGia << "," << _ten << "," << _CMND << "," << _ngaySinh << "," << _ngayLapThe<< endl;
+			}
+		}
+		tmp.close();
+		fo.close();
+		remove("sachNgoaiVan.csv");
+		rename("tmp.csv", "sachNgoaiVan.csv");
+	}
+
+	void Delete_File_PhieuSachTiengViet(string maPhieu)
+	{		 
+		fstream fo("phieuSachTiengViet.csv", ios::in);
+		fstream tmp("tmp.csv", ios::out);
+		if (!fo.is_open() || !tmp.is_open())
+		{
+			cout << "\nLoi khong mo duoc file";
+			return;
+		}
+		string _maPhieu,_maDocGia, _ngayMuon,_ngayHetHan,_sachMuon;
+		while (getline(fo, _maPhieu, ','))
+		{
+			getline(fo, _maDocGia, ',');
+			getline(fo, _ngayMuon, ',');
+			getline(fo, _ngayHetHan, ',');
+			getline(fo, _sachMuon, '\n');
+
+			if (_maDocGia.compare(maPhieu) == 0)
+			{
+				continue;
+			}
+			else
+			{
+				tmp << _maPhieu << "," << _maDocGia << "," << _ngayMuon << "," << _ngayHetHan << "," << _sachMuon<< endl;
+			}
+		}
+		tmp.close();
+		fo.close();
+		remove("phieuSachTiengViet.csv");
+		rename("tmp.csv", "phieuSachTiengViet.csv");
+	}
+
+	void Delete_File_PhieuSachNgoaiVan(string maPhieu)
+	{
+		fstream fo("phieuSachNgoaiVan.csv", ios::in);
+		fstream tmp("tmp.csv", ios::out);
+		if (!fo.is_open() || !tmp.is_open())
+		{
+			cout << "\nLoi khong mo duoc file";
+			return;
+		}
+		string _maPhieu, _maDocGia, _ngayMuon, _ngayHetHan, _sachMuon;
+		while (getline(fo, _maPhieu, ','))
+		{
+			getline(fo, _maDocGia, ',');
+			getline(fo, _ngayMuon, ',');
+			getline(fo, _ngayHetHan, ',');
+			getline(fo, _sachMuon, '\n');
+
+			if (_maDocGia.compare(maPhieu) == 0)
+			{
+				continue;
+			}
+			else
+			{
+				tmp << _maPhieu << "," << _maDocGia << "," << _ngayMuon << "," << _ngayHetHan << "," << _sachMuon << endl;
+			}
+		}
+		tmp.close();
+		fo.close();
+		remove("phieuSachNgoaiVan.csv");
+		rename("tmp.csv", "phieuSachTiengViet.csv");
+	}
+
+	
 };
 
  
